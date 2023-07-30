@@ -18,7 +18,7 @@ var privateKey = session.privateKey;
 // Firma
 
 function generateSignature(publicKey, privateKey, method, url, body, timestamp) {
-  let stringToSign = publicKey + "+" + method + "+" + encodeURIComponent(url);
+  let stringToSign = publicKey + "+" + method + "+" + url;
 
   if (body) {
     stringToSign += "+" + body;
@@ -30,4 +30,5 @@ function generateSignature(publicKey, privateKey, method, url, body, timestamp) 
 
   return signature;
 }
+
 
