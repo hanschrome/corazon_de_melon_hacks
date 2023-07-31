@@ -6,7 +6,7 @@ Véase el vídeo de YouTube para saber usarse.
 
 O ejecuta este código bajo tu responsabilidad:
 ```js
-$.getQuery('https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/js/0_all-games.js');
+$.getScript('https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/js/0_all-games.js');
 ```
 
 # curl options
