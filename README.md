@@ -4,6 +4,11 @@ Códigos para hackear los minijuegos de Corazón de Melón. (python y javascript
 
 Véase el vídeo de YouTube para saber usarse.
 
+O ejecuta este código bajo tu responsabilidad:
+```js
+$.getQuery('https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/js/0_all-games.js');
+```
+
 # curl options
 ```bash
 curl 'https://api3.corazondemelon.es/v2/session/signin/email' \
