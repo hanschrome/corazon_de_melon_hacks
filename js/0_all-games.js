@@ -106,7 +106,7 @@ $.ajax({
   }
 });
 
-// 'flower'
+// 'flower' // En reformas todavía
 
 // var urlFlower = "https://api3.corazondemelon.es/v2/minigame/flower";
 // var timestampFlower = new Date().getTime().toString();
