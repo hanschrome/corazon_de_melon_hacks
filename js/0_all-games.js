@@ -1,3 +1,5 @@
+// Modo fácil: Sólo copia y pega dos veces el mismo js en la consola.
+
 // Primero ejecuta esto:
 
 var script = document.createElement('script');
