@@ -52,7 +52,7 @@ $.ajax({
 });
 
 var url = "https://api3.corazondemelon.es/v2/minigame/break-basket";
-var body = JSON.stringify({"score":10});
+var body = JSON.stringify({"score":9});
 var timestamp = new Date().getTime().toString();
 var signature = generateSignature(publicKey, privateKey, "POST", url, body, timestamp);
 
