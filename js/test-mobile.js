@@ -97,32 +97,38 @@ async function makeRequest(publicKey, privateKey, method, url, body, gameName) {
 }
 
 async function startMiniGames() {
-    var cookies = document.cookie.split('; ');
-    var cookieObject = {};
-    cookies.forEach(function(cookie) {
-      var parts = cookie.split('=');
-      cookieObject[parts[0]] = parts[1];
-    });
-    
-    var session = JSON.parse(decodeURIComponent(cookieObject['client.session']));
-    var publicKey = session.publicKey;
-    var privateKey = session.privateKey;
-    
-    var games = [
-      { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
-      { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" },
-      { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: null, name: "Insect Rush 1/2" },
-      { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: JSON.stringify({"score":10}), name: "Insect Rush 2/2" }
-    ];
-    
-    games.forEach(function(game, i) {
-      setTimeout(function() {
-        makeRequest(publicKey, privateKey, game.method, game.url, game.body, game.name);
-        if(i === games.length - 1) {
-          document.getElementById('loader').style.display = 'none';
-        }
-      }, i * 1000);
-    });
+    try {
+        var cookies = document.cookie.split('; ');
+        var cookieObject = {};
+        cookies.forEach(function(cookie) {
+          var parts = cookie.split('=');
+          cookieObject[parts[0]] = parts[1];
+        });
+        
+        var session = JSON.parse(decodeURIComponent(cookieObject['client.session']));
+        var publicKey = session.publicKey;
+        var privateKey = session.privateKey;
+        
+        var games = [
+          { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
+          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" },
+          { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: null, name: "Insect Rush 1/2" },
+          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: JSON.stringify({"score":10}), name: "Insect Rush 2/2" }
+        ];
+        
+        games.forEach(function(game, i) {
+          setTimeout(function() {
+            makeRequest(publicKey, privateKey, game.method, game.url, game.body, game.name);
+            if(i === games.length - 1) {
+              document.getElementById('loader').style.display = 'none';
+            }
+          }, i * 1000);
+        });
+  } catch (error) {
+    document.body.innerHTML = `<pre>${error}</pre>`;
+  }
 }
 
-// startMiniGames();
+startMiniGames();
+
+setTimeout(function() {document.getElementById('startButton').addEventListener('click', startMiniGames)}, 1000);
