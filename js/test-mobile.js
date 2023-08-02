@@ -17,58 +17,73 @@ async function sha1(text, key) {
 document.body.innerHTML = `
     <style>
         body { 
-            background-color: #000; 
-            color: #0F0; 
+            background-color: #FFC0CB; 
+            color: #8B008B; 
             font-family: 'Courier New', Courier, monospace; 
-            font-size: 4vw; 
+            font-size: 4vw;
+            font-style: italic;
         }
         #status { display: none; margin-top: 20px; }
         #status span { display: block; margin-bottom: 10px; }
         #status span:before { content: '✔'; color: #008000; margin-right: 5px; }
+
         .loader {
-          border: 16px solid #f3f3f3;
-          border-radius: 50%;
-          border-top: 16px solid #0F0;
-          width: 120px;
-          height: 120px;
-          -webkit-animation: spin 2s linear infinite; /* Safari */
-          animation: spin 2s linear infinite;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin: -60px 0 0 -60px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #8B008B;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -60px 0 0 -60px;
         }
-        /* Safari */
         @-webkit-keyframes spin {
-          0% { -webkit-transform: rotate(0deg); }
-          100% { -webkit-transform: rotate(360deg); }
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
         }
         @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .button {
             display: inline-block;
-            color: #0F0;
+            color: #8B008B;
             text-decoration: none;
-            background-color: #000;
-            padding: 10px 20px;
-            border: 2px solid #0F0;
-            margin: 10px 2px;
+            background-color: #FFC0CB;
+            padding: 2vw;
+            border: 2px solid #8B008B;
+            margin: 1vw;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .button:hover {
-            background-color: #0F0;
-            color: #000;
+            background-color: #8B008B;
+            color: #FFC0CB;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 5vw;
+            color: #8B008B;
         }
     </style>
-    <h1>El Hacker Riojano patrocina estos minijuegos.</h1>
+    <h1>¡Bienvenidas al adorable lado oscuro de Corazón de Melón! 🍈💖🕹️</h1>
+    <p>👾💖 El Hacker Riojano: Los minijuegos están siendo adorablemente hackeados para obtener la máxima puntuación 💖👾</p>
     <div class="loader" id="loader"></div>
+    <hr/>
     <div id="status"></div>
-    <a href="https://www.youtube.com/@HansCastroJimenez" class="button" target="_blank">Visitar Canal de YouTube</a>
-    <a href="https://www.corazondemelon.es/s1/games" class="button">Volver a Corazón de Melón</a>
+    <hr/>
+    <p>En caso de errores, sugerencias o mejoras, avísame en mi canal de YouTube 💌</p>
+    <a href="https://www.youtube.com/@HansCastroJimenez" class="button" target="_blank">📹 El Hacker Riojano (YouTube) 🌐</a>
+    <a href="https://www.corazondemelon.es/s1/games" class="button">Volver a Corazón de Melón 🍈💖</a>
+    <div id="finished" style="display: none;">
+        <h2>🎉 ¡Todos los minijuegos han terminado!</h2>
+    </div>
 `;
+
 
 async function generateSignature(publicKey, privateKey, method, url, body, timestamp) {
   let stringToSign = publicKey + "+" + method + "+" + url;
@@ -100,11 +115,20 @@ async function makeRequest(publicKey, privateKey, method, url, body, gameName) {
     },
     data: body,
     success: function(data) {
-      document.querySelector('#status').innerHTML += `<div>Ha terminado el juego ${gameName}</div>`;
+      document.querySelector('#status').innerHTML += `<div>🎉 Ha terminado el juego ${gameName}</div>`;
+      document.querySelector('#status').style.display = 'block';
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      if(jqXHR.status === 400) {
+        document.querySelector('#status').innerHTML += `<div>😅 Ya jugaste hoy a ${gameName}</div>`;
+      } else if(jqXHR.status === 401) {
+        document.querySelector('#status').innerHTML += `<div>😓 Ha habido un error jugando a ${gameName}, repórtalo en mi canal de YouTube</div>`;
+      }
       document.querySelector('#status').style.display = 'block';
     }
   });
 }
+
 
 async function startMiniGames() {
     try {
@@ -130,7 +154,8 @@ async function startMiniGames() {
           setTimeout(function() {
             makeRequest(publicKey, privateKey, game.method, game.url, game.body, game.name);
             if(i === games.length - 1) {
-              document.getElementById('loader').style.display = 'none';
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('finished').style.display = 'block'; // Mostrar el mensaje de finalización
             }
           }, i * 1000);
         });
