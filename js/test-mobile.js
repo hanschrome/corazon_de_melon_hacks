@@ -10,7 +10,12 @@ async function sha1(text) {
 
 document.body.innerHTML = `
     <style>
-        body { background-color: #000; color: #0F0; font-family: 'Courier New', Courier, monospace; }
+        body { 
+            background-color: #000; 
+            color: #0F0; 
+            font-family: 'Courier New', Courier, monospace; 
+            font-size: 4vw; 
+        }
         #status { display: none; margin-top: 20px; }
         #status span { display: block; margin-bottom: 10px; }
         #status span:before { content: '✔'; color: #008000; margin-right: 5px; }
@@ -53,7 +58,6 @@ document.body.innerHTML = `
         }
     </style>
     <h1>El Hacker Riojano patrocina estos minijuegos.</h1>
-    <button class="button" onclick="startMiniGames()">Click si no empieza</button>
     <div class="loader" id="loader"></div>
     <div id="status"></div>
     <a href="https://www.youtube.com/@HansCastroJimenez" class="button" target="_blank">Visitar Canal de YouTube</a>
@@ -125,10 +129,8 @@ async function startMiniGames() {
           }, i * 1000);
         });
   } catch (error) {
-    document.body.innerHTML = `<pre>${error}</pre>`;
+    document.body.innerHTML = `<pre>¿Has iniciado sesión en Corazón de Melón? - ${error}</pre>`;
   }
 }
 
 startMiniGames();
-
-setTimeout(function() {document.getElementById('startButton').addEventListener('click', startMiniGames)}, 1000);
