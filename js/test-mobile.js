@@ -125,4 +125,4 @@ async function startMiniGames() {
     });
 }
 
-startMiniGames();
+// startMiniGames();
