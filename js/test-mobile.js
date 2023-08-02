@@ -53,23 +53,12 @@ document.body.innerHTML = `
         }
     </style>
     <h1>El Hacker Riojano patrocina estos minijuegos.</h1>
+    <button class="button" onclick="startMiniGames()">Click si no empieza</button>
     <div class="loader" id="loader"></div>
     <div id="status"></div>
     <a href="https://www.youtube.com/@HansCastroJimenez" class="button" target="_blank">Visitar Canal de YouTube</a>
     <a href="https://www.corazondemelon.es/s1/games" class="button">Volver a Corazón de Melón</a>
-
 `;
-
-var cookies = document.cookie.split('; ');
-var cookieObject = {};
-cookies.forEach(function(cookie) {
-  var parts = cookie.split('=');
-  cookieObject[parts[0]] = parts[1];
-});
-
-var session = JSON.parse(decodeURIComponent(cookieObject['client.session']));
-var publicKey = session.publicKey;
-var privateKey = session.privateKey;
 
 async function generateSignature(publicKey, privateKey, method, url, body, timestamp) {
   let stringToSign = publicKey + "+" + method + "+" + url;
@@ -86,7 +75,7 @@ async function generateSignature(publicKey, privateKey, method, url, body, times
   return signature;
 }
 
-async function makeRequest(method, url, body, gameName) {
+async function makeRequest(publicKey, privateKey, method, url, body, gameName) {
   var timestamp = new Date().getTime().toString();
   var signature = await generateSignature(publicKey, privateKey, method, url, body, timestamp);
 
@@ -107,18 +96,33 @@ async function makeRequest(method, url, body, gameName) {
   // });
 }
 
-var games = [
-  { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
-  { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" },
-  { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: null, name: "Insect Rush 1/2" },
-  { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: JSON.stringify({"score":10}), name: "Insect Rush 2/2" }
-];
+async function startMiniGames() {
+    var cookies = document.cookie.split('; ');
+    var cookieObject = {};
+    cookies.forEach(function(cookie) {
+      var parts = cookie.split('=');
+      cookieObject[parts[0]] = parts[1];
+    });
+    
+    var session = JSON.parse(decodeURIComponent(cookieObject['client.session']));
+    var publicKey = session.publicKey;
+    var privateKey = session.privateKey;
+    
+    var games = [
+      { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
+      { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" },
+      { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: null, name: "Insect Rush 1/2" },
+      { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: JSON.stringify({"score":10}), name: "Insect Rush 2/2" }
+    ];
+    
+    games.forEach(function(game, i) {
+      setTimeout(function() {
+        makeRequest(publicKey, privateKey, game.method, game.url, game.body, game.name);
+        if(i === games.length - 1) {
+          document.getElementById('loader').style.display = 'none';
+        }
+      }, i * 1000);
+    });
+}
 
-games.forEach(function(game, i) {
-  setTimeout(function() {
-    makeRequest(game.method, game.url, game.body, game.name);
-    if(i === games.length - 1) {
-      document.getElementById('loader').style.display = 'none';
-    }
-  }, i * 1000);
-});
+startMiniGames();
