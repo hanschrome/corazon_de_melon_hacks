@@ -83,21 +83,21 @@ async function makeRequest(publicKey, privateKey, method, url, body, gameName) {
   var timestamp = new Date().getTime().toString();
   var signature = await generateSignature(publicKey, privateKey, method, url, body, timestamp);
 
-  // $.ajax({
-  //   url: url,
-  //   method: method,
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'X-Beemoov-Application': publicKey,
-  //     'X-Beemoov-Signature': signature,
-  //     'X-Beemoov-Timestamp': timestamp,
-  //   },
-  //   data: body,
-  //   success: function(data) {
+  $.ajax({
+    url: url,
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Beemoov-Application': publicKey,
+      'X-Beemoov-Signature': signature,
+      'X-Beemoov-Timestamp': timestamp,
+    },
+    data: body,
+    success: function(data) {
       document.querySelector('#status').innerHTML += `<div>Ha terminado el juego ${gameName}</div>`;
       document.querySelector('#status').style.display = 'block';
-  //   }
-  // });
+    }
+  });
 }
 
 async function startMiniGames() {
