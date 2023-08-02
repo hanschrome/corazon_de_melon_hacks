@@ -1,8 +1,14 @@
-async function sha1(text) {
-    const textBuffer = new TextEncoder().encode(text);
-    const hashBuffer = await crypto.subtle.digest('SHA-1', textBuffer);
+async function sha1(text, key) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const keyData = encoder.encode(key);
+    const cryptoKey = await window.crypto.subtle.importKey(
+        "raw", keyData, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]
+    );
 
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const signature = await window.crypto.subtle.sign("HMAC", cryptoKey, data);
+
+    const hashArray = Array.from(new Uint8Array(signature));                     
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
     return hashHex;
@@ -115,7 +121,7 @@ async function startMiniGames() {
         
         var games = [
           { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
-          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" },
+          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":9}), name: "Break Basket 2/2" },
           { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: null, name: "Insect Rush 1/2" },
           { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/insect-rush", body: JSON.stringify({"score":10}), name: "Insect Rush 2/2" }
         ];
