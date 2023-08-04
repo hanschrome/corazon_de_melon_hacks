@@ -1,11 +1,15 @@
 # Corazón de Melón
 
+[...]
 
-
+# Códigos Ordenador 
 
 Véase el vídeo de YouTube para saber usarse.
-
+<hr/>
 <a href="https://www.youtube.com/watch?v=CDXAvtSs5Zw">Ver el vídeo</a>
+<hr/>
+<a href="https://github.com/hanschrome/corazon_de_melon_hacks/blob/main/js/0_all-games.js">Ir al código</a>
+<hr/>
 
 # curl options
 ```bash
