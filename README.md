@@ -6,7 +6,9 @@ Se recomienda usar los códigos de móvil.
 
 Sólo se facilitan los códigos del Insect Rush y del Break Basket porque los otros dos son aleatorios, no hay margen en la puntuación.
 
-### Fiebre de Insectos/Insect Rush
+<hr/>
+
+### 🐛 Fiebre de Insectos/Insect Rush 🐛
 
 1. Visita https://www.corazondemelon.es/s1/games con el navegador de tu móvil. (Testeado en Google Chrome)
 2. Copia y pega el siguiente código en la barra de tu navegador móvil con el juego abierto en la sección de minijuegos. NO LE DES A ENTER.
@@ -18,7 +20,9 @@ $.get("https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/
 3. Ve al principio del código de la barra del navegador y añade `javascript:` al principio del código.
 4. Ahora sí, dale enter. Espera a que se quite la pantalla de carga y dale al botón de volver al juego.
 
-### Break Basket
+<hr/>
+
+### 🏀 Break Basket 🏀
 
 1. Visita https://www.corazondemelon.es/s1/games con el navegador de tu móvil. (Testeado en Google Chrome)
 2. Copia y pega el siguiente código en la barra de tu navegador móvil con el juego abierto en la sección de minijuegos. NO LE DES A ENTER.
@@ -30,6 +34,7 @@ $.get("https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/
 3. Ve al principio del código de la barra del navegador y añade `javascript:` al principio del código.
 4. Ahora sí, dale enter. Espera a que se quite la pantalla de carga y dale al botón de volver al juego.
 
+<hr/>
 
 ## Códigos Ordenador (Algo antiguos, pero deberían funcionar igualmente)
 
