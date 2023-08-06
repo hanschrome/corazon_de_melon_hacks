@@ -1,6 +1,6 @@
 # Corazón de Melón
 
-Se recomienda usar los códigos de móvil.
+Se recomienda usar los códigos de móvil. Los códigos del anterior vídeo para ordenador están abajo.
 
 ## Códigos de móvil
 
