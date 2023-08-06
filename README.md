@@ -1,8 +1,42 @@
 # Corazón de Melón
 
-[...]
+Se recomienda usar los códigos de móvil. Los códigos del anterior vídeo para ordenador están abajo.
 
-# Códigos Ordenador 
+## Códigos de móvil
+
+Sólo se facilitan los códigos del Insect Rush y del Break Basket porque los otros dos son aleatorios, no hay margen en la puntuación.
+
+<hr/>
+
+### 🐛 Fiebre de Insectos/Insect Rush 🐛
+
+1. Visita https://www.corazondemelon.es/s1/games con el navegador de tu móvil. (Testeado en Google Chrome)
+2. Copia y pega el siguiente código en la barra de tu navegador móvil con el juego abierto en la sección de minijuegos. NO LE DES A ENTER.
+
+```javascript
+$.get("https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/2023/8_Agosto/corazon_de_melon/insect_rush.js", function(data) { eval(data); });
+```
+
+3. Ve al principio del código de la barra del navegador y añade `javascript:` al principio del código.
+4. Ahora sí, dale enter. Espera a que se quite la pantalla de carga y dale al botón de volver al juego.
+
+<hr/>
+
+### 🏀 Break Basket 🏀
+
+1. Visita https://www.corazondemelon.es/s1/games con el navegador de tu móvil. (Testeado en Google Chrome)
+2. Copia y pega el siguiente código en la barra de tu navegador móvil con el juego abierto en la sección de minijuegos. NO LE DES A ENTER.
+
+```javascript
+$.get("https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/2023/8_Agosto/corazon_de_melon/break_basket.js", function(data) { eval(data); });
+```
+
+3. Ve al principio del código de la barra del navegador y añade `javascript:` al principio del código.
+4. Ahora sí, dale enter. Espera a que se quite la pantalla de carga y dale al botón de volver al juego.
+
+<hr/>
+
+## Códigos Ordenador (Algo antiguos, pero deberían funcionar igualmente)
 
 Véase el vídeo de YouTube para saber usarse.
 <hr/>

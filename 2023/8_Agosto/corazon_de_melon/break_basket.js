@@ -145,7 +145,7 @@ async function startMiniGames() {
 
         var games = [
           { method: "GET", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: null, name: "Break Basket 1/2" },
-          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":9}), name: "Break Basket 2/2" }
+          { method: "POST", url: "https://api3.corazondemelon.es/v2/minigame/break-basket", body: JSON.stringify({"score":10}), name: "Break Basket 2/2" }
         ];
 
         games.forEach(function(game, i) {
