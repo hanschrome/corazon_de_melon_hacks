@@ -40,7 +40,9 @@ $.get("https://raw.githubusercontent.com/hanschrome/corazon_de_melon_hacks/main/
 
 Véase el vídeo de YouTube para saber usarse.
 <hr/>
-<a href="https://www.youtube.com/watch?v=CDXAvtSs5Zw">Ver el vídeo</a>
+(click en la imagen para ver el vídeo)
+<a href ="https://www.youtube.com/watch?v=CDXAvtSs5Zw" target="_blank"><img src="https://img.youtube.com/vi/CDXAvtSs5Zw/0.jpg" alt=""/></a>
+
 <hr/>
 <a href="https://github.com/hanschrome/corazon_de_melon_hacks/blob/main/js/0_all-games.js">Ir al código</a>
 <hr/>
